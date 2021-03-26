@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "date-fns": "^2.19.0",
     "firebase": "^8.3.1",
     "next": "10.0.9",
     "node-fetch": "^2.6.1",
