@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from '../components/Layout'
 import {format} from 'date-fns';
+import Match from '../components/Match';
 
 export async function getServerSideProps(context) {
   const res = await fetch(`http://localhost:3030/matches`);
@@ -68,13 +69,7 @@ export default function Home({fights}) {
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 gap-3 w-3/4">
-          {matches.map( fight => (
-              <a key={fight._id} target="_blank" href={"https://youtube.com/watch?v=" + fight.video} className="items-center flex flex-col justify-between bg-gray-300 font-bungee rounded-md m-1 px-3 py-6 text-black text-base hover:bg-gray-400">
-                  <span>
-                      <span  className="text-red-800 text-lg">{fight.characters[0]}</span> vs <span className="text-blue-800 text-xl">{fight.characters[1] || fight.characters[0]}</span>
-                  </span>
-                  <span className="text-xs text-gray-500">{fight.date && format(new Date(fight.date), 'MMM dd, yyyy')}</span>
-              </a>))}
+          {matches.map( fight => <Match fight={fight} />)}
         </div>
       </div>
       <div className="flex justify-center mt-3 p-3">
